@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ActiveLink } from "../active-link";
+import { Logo } from "../logo";
 
 export function Header() {
 
@@ -14,8 +15,10 @@ export function Header() {
             supports-backdrop-filters:bg-background/60
         ">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="flex h-16 items-center justify-between">
-                    <Link href="/">Logo</Link>
+                <div className="flex  flex-1 h-16 items-center justify-evenly sm:justify-between">
+                    <Logo 
+                        src="/Brand-Logo.svg" 
+                    />
 
                     <nav className="flex items-center gap-6">
                         <ActiveLink href="/">
