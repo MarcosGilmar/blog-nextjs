@@ -11,6 +11,7 @@ const buttonVariants = cva(
       variant: {
         primary: "bg-blue-200 text-white hover:bg-blue-300 rounded-full",
         secondary: "bg-gray-100 text-gray-800 hover:bg-blue-100 rounded-full",
+        outline: "bg-gray-700 border border-gray-400 transition-colors duration-200 hover:text-blue-200 hover:border-blue-200"
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

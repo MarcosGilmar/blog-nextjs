@@ -17,7 +17,6 @@ export function BlogList() {
 
   const hasPosts = posts.length > 0;
 
-  console.log(hasPosts)
   return (
     <div className="flex flex-col py-15 grow h-full">
       <header className="pb-5">
