@@ -1,23 +1,29 @@
+"use client";
 import { Search } from "@/components/search";
-import { useRouter } from "next/router";
 import { PostCard } from "./components/post-card";
 import { PostGridCard } from "./components/post-grid-card";
 import { Post } from "contentlayer/generated";
 import { Inbox } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 
 export type BlogListProps = {
   posts: Post[];
-}
+};
 
 export function BlogList({ posts }: BlogListProps) {
-  const router = useRouter();
-  const query = (router.query.q as string) ?? "";
+  const searchParams = useSearchParams();
 
-  const blogTitle = query
+  const query = searchParams?.get("q") ?? "";
+
+  const pageTitle = query
     ? `Resultados de pesquisa para: ${query} `
     : "Dicas e estratégias para impulsionar seu negócio";
 
-  const postList = query ? posts.filter((post) => post.title.toLowerCase()?.includes(query.toLowerCase())) : posts;
+  const postList = query
+    ? posts.filter((post) =>
+        post.title.toLowerCase()?.includes(query.toLowerCase()),
+      )
+    : posts;
 
   const hasPosts = posts.length > 0;
 
@@ -31,7 +37,7 @@ export function BlogList({ posts }: BlogListProps) {
             </span>
 
             <h1 className="text-start text-wrap md:text-left text-heading-lg md:text-heading-xl text-gray-200 max-w-2xl ">
-              {blogTitle}
+              {pageTitle}
             </h1>
           </div>
           <div className="px-4 w-full md:w-60">
@@ -61,13 +67,14 @@ export function BlogList({ posts }: BlogListProps) {
 
       {!hasPosts && (
         <div className="container">
-          <div className="
+          <div
+            className="
             flex flex-col items-center justify-center
             gap-8 border-dashed border-2 border-gray-300
             p-8 md:p-12 rounded-lg
             "
           >
-            <Inbox  className="h-12 w-12 text-cyan-100"/>
+            <Inbox className="h-12 w-12 text-cyan-100" />
             <p className="text-gray-100 text-center">Nenhum post encontrado</p>
           </div>
         </div>
